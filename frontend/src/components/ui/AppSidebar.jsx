@@ -10,14 +10,23 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "./Sidebar.jsx"
-import { Home, Settings } from "lucide-react"
+import { Home, Settings, MessageCirclePlus } from "lucide-react"
+import { Button } from "../ui/Button.jsx"
+import { cn } from "../../utils/cn.js"
 
 export function AppSidebar() {
   return (
-    <Sidebar className='text-black dark:text-white'>
+    <Sidebar className='text-black dark:text-white pt-10'>
       <SidebarHeader>
         {/* You could put your logo here */}
-        <span className="font-semibold text-lg">My App</span>
+        <Button
+          variant="ghost"
+          size="default"
+          className={cn("rounded-full bg-input/30")}
+        >
+          <MessageCirclePlus className='text-black dark:text-white' />
+          <span>New Message</span>
+        </Button>
       </SidebarHeader>
 
       <SidebarContent>
@@ -43,7 +52,7 @@ export function AppSidebar() {
 
       <SidebarFooter>
         {/* You could put a user profile button here */}
-        <span className="font-semibold text-lg">Settings</span>
+        <span className="flex justify-center font-semibold text-lg">Settings</span>
       </SidebarFooter>
     </Sidebar>
   )
