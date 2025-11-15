@@ -17,7 +17,7 @@ import { cn } from "../../utils/cn.js"
 export function AppSidebar() {
   return (
     <Sidebar className='text-black dark:text-white pt-10'>
-      <SidebarHeader>
+      <SidebarHeader className="p-5">
         {/* You could put your logo here */}
         <Button
           variant="ghost"
