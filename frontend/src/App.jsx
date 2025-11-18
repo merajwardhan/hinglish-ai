@@ -12,8 +12,34 @@ import {
 import { Send, Paperclip } from "lucide-react";
 import { SidebarProvider, SidebarTrigger } from './components/ui/Sidebar.jsx';
 import { AppSidebar } from './components/ui/AppSidebar.jsx';
+import React, { useRef, useCallback } from 'react';
 
 function App() {
+  const textareaRef = useRef(null);
+
+  const adjustTextareHeight = useCallback(() => {
+    const textarea = textareaRef.current;
+    if(textarea) {
+      textarea.style.height = 'auto';
+      let newHeight = textarea.scrollHeight;
+      const maxHeight = 200;
+      if(newHeight > maxHeight){
+        newHeight = maxHeight;
+        textarea.style.overflowY = 'auto';
+      }else{
+        textarea.style.overflowY = 'hidden';
+      }
+      textarea.style.height = `${newHeight}px`;
+    }
+  }, [])
+
+  const handleInput = useCallback((e) => {
+    setTimeout(adjustTextareHeight, 0);
+  }, [adjustTextareHeight]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
 
   return (
     <SidebarProvider>
@@ -44,7 +70,9 @@ function App() {
                   </InputGroupButton>
                 </InputGroupAddon>
                 <InputGroupTextarea
-                  placeholder="Message Jackie AI..."
+                  ref={textareaRef}
+                  onInput={handleInput}
+                  placeholder="Message Hinglish AI..."
                   rows={1}
                 />
                 <InputGroupAddon align="inline-end">
