@@ -5,6 +5,7 @@ import { cn } from "../../utils/cn.js";
 import { Button } from "./Button.jsx";
 import { Input } from "./Input.jsx";
 import { Textarea } from "./TextArea.jsx";
+import React from 'react';
 
 function InputGroup({ className, ...props }) {
   return (
@@ -134,20 +135,21 @@ function InputGroupInput({ className, ...props }) {
   );
 }
 
-function InputGroupTextarea({ className, ...props }) {
+const InputGroupTextarea = React.forwardRef(({ className, ...props },ref) => {
   return (
     <Textarea
       data-slot="input-group-control"
+      ref={ref}
       className={cn(
         "flex-1 text-black dark:text-white resize-none rounded-none border-0 bg-transparent py-3 shadow-none focus-visible:ring-0 dark:bg-transparent",
-        "min-h-[40px] max-h-[200]px",
+        "min-h-[40px]",
         "placeholder:text-slate-400 dark:placeholder:text-slate-300",
         className
       )}
       {...props}
     />
   );
-}
+});
 
 export {
   InputGroup,
