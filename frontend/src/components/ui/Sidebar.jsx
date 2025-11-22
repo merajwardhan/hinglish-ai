@@ -70,7 +70,7 @@ function useSidebar() {
  * @param {object} [props.props] - Other div props
  */
 function SidebarProvider({
-  defaultOpen = true,
+  defaultOpen = false,
   open: openProp,
   onOpenChange: setOpenProp,
   className,
