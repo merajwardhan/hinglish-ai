@@ -3,6 +3,7 @@ import geminiServices from '../utils/google.service.js';
 async function handleMessage(req, res) {
   try {
      const msg = req.body.message;
+
      if(!msg) return res.status(400).json({ message: `Message content required!`});
      const response = await geminiServices.sendMessage(msg);
      res.status(200).json({ response });

@@ -45,7 +45,7 @@ function App() {
     <SidebarProvider>
       <AppSidebar />
       <main 
-        className="relative min-h-screen w-full overflow-hidden bg-white dark:bg-neutral-950">
+        className="relative min-h-screen w-full overflow-hidden bg-white dark:bg-neutral-950 ">
         <div className="absolute top-4 left-4 z-10">
           <SidebarTrigger />
         </div>
