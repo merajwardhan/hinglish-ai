@@ -12,12 +12,13 @@ import {
 import { Send, Paperclip } from "lucide-react";
 import { SidebarProvider, SidebarTrigger } from './components/ui/Sidebar.jsx';
 import { AppSidebar } from './components/ui/AppSidebar.jsx';
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 
 function App() {
   const textareaRef = useRef(null);
+  const [ message , setMessage ] = useState('');
 
-  const adjustTextareHeight = useCallback(() => {
+  const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
     if(textarea) {
       textarea.style.height = 'auto';
@@ -31,14 +32,18 @@ function App() {
       }
       textarea.style.height = `${newHeight}px`;
     }
-  }, [])
+  }
 
-  const handleInput = useCallback((e) => {
-    setTimeout(adjustTextareHeight, 0);
-  }, [adjustTextareHeight]);
+  const handleInput = (e) => {
+      setMessage(e.target.value);
+      adjustTextareaHeight();
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(message.trim()){
+      console.log(`Fetch call to the backend for message = ${message}`);
+    }
   }
 
   return (
@@ -62,7 +67,7 @@ function App() {
             />
           </div>
           <div className="w-full max-w-3xl mx-auto p-4">
-            <form >
+            <form onSubmit={handleSubmit}>
               <InputGroup>
                 <InputGroupAddon align="inline-start">
                   <InputGroupButton size="icon-sm" type="button">
@@ -97,66 +102,3 @@ function App() {
 }
 
 export default App
-
-// export default function ChatbotInput() {
-//   const [message, setMessage] = useState("");
-//
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (message.trim()) {
-//       console.log("Sending message:", message);
-//       // Add your send logic here
-//       setMessage("");
-//     }
-//   };
-//
-//   const handleKeyDown = (e) => {
-//     // Submit on Enter, new line on Shift+Enter
-//     if (e.key === "Enter" && !e.shiftKey) {
-//       e.preventDefault();
-//       handleSubmit(e);
-//     }
-//   };
-//
-//   return (
-//     <div className="w-full max-w-3xl mx-auto p-4">
-//       <form onSubmit={handleSubmit}>
-//         <InputGroup>
-//           {/* Optional: Attach files button on the left */}
-//           <InputGroupAddon align="inline-start">
-//             <InputGroupButton size="icon-sm" type="button">
-//               <Paperclip />
-//             </InputGroupButton>
-//           </InputGroupAddon>
-//
-//           {/* Main textarea input */}
-//           <InputGroupTextarea
-//             value={message}
-//             onChange={(e) => setMessage(e.target.value)}
-//             onKeyDown={handleKeyDown}
-//             placeholder="Message AI..."
-//             rows={1}
-//             className="min-h-[40px] max-h-[200px] resize-none"
-//           />
-//
-//           {/* Send button on the right */}
-//           <InputGroupAddon align="inline-end">
-//             <InputGroupButton
-//               size="icon-sm"
-//               type="submit"
-//               disabled={!message.trim()}
-//               variant="default"
-//             >
-//               <Send />
-//             </InputGroupButton>
-//           </InputGroupAddon>
-//         </InputGroup>
-//       </form>
-//
-//       {/* Helper text */}
-//       <p className="text-xs text-muted-foreground mt-2 text-center">
-//         Press Enter to send, Shift+Enter for new line
-//       </p>
-//     </div>
-//   );
-// }
