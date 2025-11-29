@@ -72,3 +72,5 @@ temp/
 uploads/
 public/uploads/
 
+#vscode/debugger
+.vscode
