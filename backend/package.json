@@ -9,6 +9,6 @@
     "nodemon": "^3.1.11"
   },
   "scripts": {
-    "start": "pnpm nodemon server.js"
+    "start": "pnpm nodemon server.js",
   }
 }
