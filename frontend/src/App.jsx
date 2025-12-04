@@ -45,6 +45,13 @@ function App() {
       console.log(`Fetch call to the backend for message = ${message}`);
     }
   }
+  
+  const handleEnter = (e) => {
+    if(e.key === 'Enter' && !e.shiftKey){
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  }
 
   return (
     <SidebarProvider>
@@ -77,6 +84,7 @@ function App() {
                 <InputGroupTextarea
                   ref={textareaRef}
                   onInput={handleInput}
+                  onKeyPress={handleEnter}
                   placeholder="Message Hinglish AI..."
                   rows={1}
                 />
