@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "./Sidebar.jsx"
-import { Home, Settings, MessageCirclePlus } from "lucide-react"
+import { Home, Settings, MessageCirclePlus, Frown } from "lucide-react"
 import { Button } from "../ui/Button.jsx"
 import { cn } from "../../utils/cn.js"
 
@@ -24,7 +24,7 @@ export function AppSidebar() {
           size="default"
           className={cn("rounded-full bg-input/30")}
         >
-          <MessageCirclePlus className='text-black dark:text-white' />
+          <MessageCirclePlus/>
           <span>New Message</span>
         </Button>
       </SidebarHeader>
@@ -52,7 +52,14 @@ export function AppSidebar() {
 
       <SidebarFooter>
         {/* You could put a user profile button here */}
-        <span className="flex justify-center font-semibold text-lg">Settings</span>
+        <Button
+        onClick="showSettings">
+          <Frown className='size-4' />
+          <span className="font-semibold text-sm truncate max-w-[140px] md:max-w-none md-whitespace-normal">
+            {/* {isLoggedIn ? {userName} : "Not logged in!"} */}
+            "Not logged in!"
+          </span>
+        </Button>
       </SidebarFooter>
     </Sidebar>
   )
